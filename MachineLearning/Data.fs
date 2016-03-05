@@ -20,7 +20,6 @@ module Data =
         | [x; y] -> (x,y)
         | _ -> failwith "List must be of [x,y]"
 
-
     /// <summary>
     /// This function converts a list of a list of floats and converts it to a list of tuples of floats
     /// </summary>
@@ -29,3 +28,6 @@ module Data =
     let toChartTuple list =
         list
             |> List.map listToTuple
+
+    let addOnesColumn (rawX : Matrix<double>) =
+        (DenseMatrix.init rawX.RowCount 1 (fun _ _ -> 1.0)).Append(rawX)
