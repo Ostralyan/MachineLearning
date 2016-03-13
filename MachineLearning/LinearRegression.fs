@@ -33,6 +33,6 @@ module LinearRegression =
 
         let J_history_tuple = J_history
                             |> Vector.toList
-                            |> List.mapi (fun i x -> x, i)
+                            |> List.mapi (fun i x -> i, x)
 
         (theta, J_history_tuple)

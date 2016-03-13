@@ -1,16 +1,22 @@
 ﻿namespace MachineLearning
    
 open System
-open MathNet.Numerics.LinearAlgebra
 
 module Data =
     let load path filename =
-        let lines = System.IO.File.ReadAllLines(IO.Path.Combine(path, filename))
-                    |> Seq.map (fun s -> s.Split [|','|] |> Seq.map Double.Parse |> Seq.toList)
-                    |> Seq.toList
-        lines
+        try
+            let lines = System.IO.File.ReadAllLines(IO.Path.Combine(path, filename))
+                        |> Seq.map (fun s -> s.Split [|','|] |> Seq.map Double.Parse |> Seq.toList)
+                        |> Seq.toList
+            lines
+        with
+            | :? System.IO.FileNotFoundException 
+                -> printfn @"Could not find file"
+                   Console.ReadKey() |> ignore
+                   exit 0
+            
     
-    /// <summary>
+    /// <summary>s
     /// This function converts a list of length two [x;y] to a tuple (x,y)
     /// </summary>
     /// <param name="list">A list of floats of length two.</param>
@@ -28,6 +34,3 @@ module Data =
     let toChartTuple list =
         list
             |> List.map listToTuple
-
-    let addOnesColumn (rawX : Matrix<double>) =
-        (DenseMatrix.init rawX.RowCount 1 (fun _ _ -> 1.0)).Append(rawX)

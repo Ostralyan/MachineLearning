@@ -57,8 +57,11 @@
     <None Include="App.config" />
     <Content Include="packages.config" />
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="LinearRegression.fs" />
+    <Compile Include="Activation.fs" />
     <Compile Include="Data.fs" />
+    <Compile Include="Misc.fs" />
+    <Compile Include="LinearRegression.fs" />
+    <Compile Include="LogisticRegression.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
